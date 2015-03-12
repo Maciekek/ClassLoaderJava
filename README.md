@@ -20,5 +20,7 @@ Gdy ClassLoader pobierze nową definicje klasy zwraca ją jako znalezioną klas�
 node .\bin\www
 ```
 
+Serwer nasłuchuje na http://localhost:3000/
+
 ##Podsumowanie
 Kolejne ciekawe zadanie. Temat wcześniej przeze mnie nie znany. Fajne połączenie częsci serwera z tym co się dzieje w aplikacji.
