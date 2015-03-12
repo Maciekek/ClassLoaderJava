@@ -1,26 +1,27 @@
 # ClassLoaderJava
-"Program" napisany na potrzeby przedmiotu JVN Internals 2015 Uniwersytet Gdański.
+Program was written for JVN Internals 2015 University of Gdansk
 
 ----
 
-##Kilka słów o programie
+##About program
 
-Zadanie polegało na napisaniu programu który w czasie działania aplikacji podmieni klasę bez potrzeby restaru aplikacji czy jakiejkolwiek ingerencji ze strony użytkownika. Aplikacja, a w zasadzie nadpisany stworzony ClassLoader pobiera nową definicje klasy ze wskazanego w kodzie serwera. 
+We had to write program that will replace definition of class during the lifetime of application. This substitution should take place without the participation of user. Application, actually overwritten ClassLoader download new definition of class from remote server.
 
-Do postawienia serwera wykorzystałem wygenerowaną aplikacje [ExpressJS](http://expressjs.com/starter/generator.html). Generator stworzył mi prosty serwerek (do tego zadania nawet nazbyt rozbudowany). Tam ustawiłem wystawianie pliku ```ClassName.class``` jako odpowiedź na wszystkie zapytania ```(/*)```
+To create server I used nodejs server generator [ExpressJS-generator](http://expressjs.com/starter/generator.html).
+Generator did simply server (for this task even too powerful). There I set a file (new definition of class) to download by Java ClassLoader. Server listens on all of URL`s ```(/*)```
 
-Gdy ClassLoader pobierze nową definicje klasy zwraca ją jako znalezioną klasę. W ten sposób odbywa się dynamiczna podmiana klasy.
-
-###Umieszczenie nowej klasy na serwerze
-Żeby program zadziałał i podmienił nową klasę należy umieścić wcześniej skompilowaną definicje klasy w katalogu ```webapp/server/routes/public``` o nazwie takiej jak klasa, którą chcemy podmienić
+When ClassLoader download new class, returns it like a found class. This is the way how to prepare to dynamic substitution classes.
 
 
-###Uruchomienie serwera
+###Seting file on server 
+First of all, you have to copy you new definition of class to special path. 
+ ```webapp/server/routes/public``` Remember to set the name of this new class exactly the same like name of class in your program.
+
+
+###Start server
 ```
 node .\bin\www
 ```
 
-Serwer nasłuchuje na http://localhost:3000/
+Server listens on http://localhost:3000/
 
-##Podsumowanie
-Kolejne ciekawe zadanie. Temat wcześniej przeze mnie nie znany. Fajne połączenie częsci serwera z tym co się dzieje w aplikacji.
